@@ -20,6 +20,7 @@ import GroupAdd from './depcommon/GroupAdd';
 import Login from './depcommon/Login';
 import Report from './report/Report';
 import Basicinfo from './depdatabasic/Basicinfo';
+import FindDup from './FindDup';
 
 function App() {
 
@@ -77,6 +78,7 @@ function App() {
         <Route path="/groupadd" element={<GroupAdd></GroupAdd>}/>
 
         <Route path="/lastreport/*" element={<Report></Report>}/>
+        <Route path="/finddup" element={<FindDup></FindDup>}/>
 
       </Routes>
      
