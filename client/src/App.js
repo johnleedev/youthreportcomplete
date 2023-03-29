@@ -21,6 +21,8 @@ import Login from './depcommon/Login';
 import Report from './report/Report';
 import Basicinfo from './depdatabasic/Basicinfo';
 import FindDup from './FindDup';
+import Resv from './resv/Resv';
+import ResvList from './resv/ResvList';
 
 function App() {
 
@@ -79,6 +81,8 @@ function App() {
 
         <Route path="/lastreport/*" element={<Report></Report>}/>
         <Route path="/finddup" element={<FindDup></FindDup>}/>
+        <Route path="/resv" element={<Resv></Resv>}/>
+        <Route path="/resvlist/*" element={<ResvList></ResvList>}/>
 
       </Routes>
      

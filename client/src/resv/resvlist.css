@@ -1,0 +1,138 @@
+.resvlist {
+  position: relative;  
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100vw;
+  max-width: 1800px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.resvlist_cover {
+  left: 0;
+  right: 0;
+  margin: 20px auto 0;
+  width: 400px;
+  height: 810px;
+  background-color: rgb(241, 252, 245);
+  padding: 5px;
+}
+.resvlist_title {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #333;
+  box-sizing: border-box;
+}
+.resvlist_title_img {
+  width: 200px;
+  height: 200px;
+}
+.resvlist_title_img img{
+  width: 170px;
+}
+.resvlist_title_name {
+  width: 200px;
+  font-size: 25px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.resvlist_content {
+  width: 100%;
+  display: flex;
+  font-size: 18px;
+}
+.resvlist_timebox div,
+.resvlist_reservebox1 div,
+.resvlist_reservebox2 div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.resvlist_timebox {
+  width: 80px;
+  height: 100%;
+}
+.resvlist_reservebox1 {
+  width: 140px;
+  height: 100%;
+}
+.resvlist_reservebox2 {
+  width: 180px;
+  height: 100%;
+}
+.resvlist_reservebox1 .maincover {
+  height: 450px;
+  flex-direction: column;
+}
+.resvlist_reservebox1 .maincover .maindiv{
+  flex-direction: column;
+}
+
+
+
+.resvlist_name {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid #333;
+  box-sizing: border-box;
+}
+.resvlist_text {
+  width: 100%;
+  height: 150px;
+  flex-direction: column;
+  border: 1px solid #333;
+  box-sizing: border-box;
+}
+.resvlist_text_box {
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+.resvlist_text_inner {
+  font-size: 16px;
+}
+.resvlist_text_lt,
+.resvlist_text_rt {
+  margin-right: 10px;
+  height: 20px; 
+}
+.resvlist_contact {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #333;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.resvlist_contact {
+  line-height: 25px;
+}
+
+.button {
+  background: none;
+  border: 0.1px solid #dbdbdb;
+  border-radius: 4px;
+}
+.button:hover {
+  cursor: pointer;
+  background-color: #dbdbdb;
+}
+
+
+
+
+
+@media screen and (max-width : 768px){
+  .resvlist {
+    flex-direction: column;
+  }
+}  

@@ -323,7 +323,7 @@ function Report(props) {
                   <input type="text" className={"출석1 출석1-" + a}
                     defaultValue={출석1[i]}
                     onInput={(e)=>{ let copy = {...출석1}; copy[i] = e.target.value; 출석1변경(copy)}}
-                  >{}</input>      
+                  ></input>      
                 )
               })
             }

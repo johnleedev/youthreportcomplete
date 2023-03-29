@@ -1,0 +1,28 @@
+.resv {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resv .cover {
+  width: 500px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.resv .cover .box {
+  width: 400px;
+  height: 100px;
+}
+.resv .cover .title {
+  font-size: 30px;
+}
+.resv .cover .box button {
+  width: 100px;
+  height: 50px;
+}
