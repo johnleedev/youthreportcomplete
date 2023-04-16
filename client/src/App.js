@@ -1,10 +1,9 @@
 /*eslint-disable*/
 import './Reset.css';
 import './App.css';
-import { React, useMemo, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { useSelector } from "react-redux"
-import axios from 'axios'
+import { React } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Main from './Main';
 import Dep1 from './dep/Dep1';
 import Dep2 from './dep/Dep2';
 import Dep3 from './dep/Dep3';
@@ -19,52 +18,23 @@ import NameAdd from './depcommon/NameAdd';
 import GroupAdd from './depcommon/GroupAdd';
 import Login from './depcommon/Login';
 import Report from './report/Report';
-import Basicinfo from './depdatabasic/Basicinfo';
 import FindDup from './FindDup';
 import Resv from './resv/Resv';
 import ResvList from './resv/ResvList';
 
 function App() {
 
-  let state = useSelector((state) => { return state } )
-  let navigate = useNavigate();
-
-  let [info, setinfo] = useState(Basicinfo)
-
   return (
     <div className="App">
 
       <Routes>
         <Route path="/" element={
-          
           <div className='App_main'>
-            <div className='maintitle'>주일학교 출석 관리</div>
-            <div className='dep_box'>
-              { state.부서info.map((a, i)=>{
-                  return (
-                    <div className='dep_list' onClick={()=>{navigate(`/dep/${i+1}`)}}><p>{ state.부서info[i].dep}</p></div>           
-                  )
-                })}
-            </div>
-            <div className='dep_buttonbox1'>
-              <button className='link_lastreport' onClick={()=>{
-              navigate('/lastreport')
-              }}> 주일학교 보고서 작성하기 </button>
-            </div>
-            <div className='dep_buttonbox2'>
-              <button className='link_login' onClick={()=>{
-              navigate('/login')
-              }}> 관리자 </button>  
-              <button className='link_login' onClick={()=>{
-              navigate('/lastreport/LastResult')
-              }}> 전체통계 </button>  
-            </div>
+          <div className='maintitle'>주일학교 출석 관리</div>
           </div>
-          }/>
-
-          
+        }/>
+        <Route path="/main" element={<Main></Main>}/>
         <Route path="/login" element={<Login></Login>}/>
-
         <Route path="/dep/1" element={<Dep1></Dep1>}/>
         <Route path="/dep/2" element={<Dep2></Dep2>}/>
         <Route path="/dep/3" element={<Dep3></Dep3>}/>
@@ -75,10 +45,8 @@ function App() {
         <Route path="/dep/8" element={<Dep8></Dep8>}/>
         <Route path="/dep/9" element={<Dep9></Dep9>}/>
         <Route path="/dep/10" element={<Dep10></Dep10>}/>
-        
         <Route path="/nameadd" element={<NameAdd></NameAdd>}/>
         <Route path="/groupadd" element={<GroupAdd></GroupAdd>}/>
-
         <Route path="/lastreport/*" element={<Report></Report>}/>
         <Route path="/finddup" element={<FindDup></FindDup>}/>
         <Route path="/resv" element={<Resv></Resv>}/>

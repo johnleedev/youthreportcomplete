@@ -138,7 +138,7 @@ function Dep9(props) {
                 window.scroll({top: location_Aboutme, behavior:'smooth'});
                   }}> 출석입력 </button>   
               <button className='dep_homebutton' onClick={()=>{
-                  navigate('/')
+                  navigate('/main')
                   }}> Home </button> 
             </div>
           </div>
@@ -302,7 +302,7 @@ function Dep9(props) {
             <div className='dateinput_content_button'>
               <button className='dateinput_homebutton'
               onClick={()=>{
-                navigate('/')
+                navigate('/main')
               }}>Home</button>
             </div>
 

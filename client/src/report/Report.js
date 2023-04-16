@@ -229,7 +229,7 @@ function Report(props) {
             }}>전체통계</button>
 
             <button className="button2 homeButton1" onClick={()=>{
-              navigate('/')
+              navigate('/main')
             }}>Home</button>
 
             <button className="button2 statsButton" onClick={()=>{
@@ -395,7 +395,7 @@ function Report(props) {
           }}>저장하기</button>
 
           <button className="button2 homebutton2" onClick={()=>{
-              navigate('/')
+              navigate('/main')
           }}>home</button>
         </div>
         

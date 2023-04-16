@@ -1,28 +1,95 @@
 .resv {
   width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.resv .cover {
-  width: 500px;
-  height: 300px;
+  min-height: 100vh;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
-.resv .cover .box {
-  width: 400px;
-  height: 100px;
-}
-.resv .cover .title {
+.resv .title {
+  width: 350px;
+  height: 80px;
   font-size: 30px;
 }
-.resv .cover .box button {
+
+.resv .cover_img {
+  max-width: 1100px;
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resv .cover_img .imgbox {
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 350px;
+  height: 480px;
+  border: 2px solid #333;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+.resv .cover_img .imgbox .titlename {
+  width: 100%;
+  height: 70px;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: bisque;
+}
+.resv .cover_img .imgbox .img {
+  width: 100%;
+  height: 200px;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.resv .cover_img .imgbox .img img{
+  width: 100%;
+  height: 200px;
+}
+.resv .cover_img .imgbox .missionbox {
+  width: 100%;
+  height: 135px;
+  display: flex;
+}
+.resv .cover_img .imgbox .missionbox .missionbox_sub {
+  width: 50%;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.resv .cover_img .imgbox .missionbox .missionbox_sub img {
+  width: 120%;
+}
+
+.resv .cover_content {
+  max-width: 400px;
+  width: 80%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.resv .cover_content .box {
+  width: 300px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.resv .cover_content .box button {
   width: 100px;
   height: 50px;
 }

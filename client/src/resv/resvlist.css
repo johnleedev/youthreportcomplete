@@ -16,7 +16,7 @@
   margin: 20px auto 0;
   width: 400px;
   height: 810px;
-  background-color: rgb(241, 252, 245);
+  background-color: rgb(252, 252, 252);
   padding: 5px;
 }
 .resvlist_title {
@@ -29,19 +29,34 @@
   box-sizing: border-box;
 }
 .resvlist_title_img {
-  width: 200px;
+  width: 300px;
   height: 200px;
-}
-.resvlist_title_img img{
-  width: 170px;
-}
-.resvlist_title_name {
-  width: 200px;
-  font-size: 25px;
-  font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+.resvlist_title_img img{
+  width: 270px;
+}
+.resvlist_title_name {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.resvlist_title_name .name_main {
+  width: 100%;
+  height: 50px;
+  font-size: 25px;
+  font-weight: 900;
+}
+.resvlist_title_name .name_sub {
+  width: 100%;
+  height: 50px;
+  font-size: 23px;
+  font-weight: 700;
 }
 .resvlist_content {
   width: 100%;

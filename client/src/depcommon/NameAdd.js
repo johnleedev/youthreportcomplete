@@ -190,7 +190,7 @@ function NameAdd(props) {
             .catch(()=>{console.log('실패함')})
           }}>입력하기</button>
 
-          <button className='home_button' onClick={()=>{ navigate('/') }} >Home</button> 
+          <button className='home_button' onClick={()=>{ navigate('/main') }} >Home</button> 
 
           <button className='namedelete_button' 
             onClick={()=>{

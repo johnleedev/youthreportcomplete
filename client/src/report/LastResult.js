@@ -118,7 +118,7 @@ function LastResult () {
             //  })
             // .catch(()=>{console.log('실패함')})
 
-                navigate('/')
+                navigate('/main')
                 }}>처음으로</button>
 
 
