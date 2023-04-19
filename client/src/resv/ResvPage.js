@@ -55,7 +55,7 @@ function ResvPage(props) {
                     } else {
                       setshow2('')
                     } 
-                  set부서(e.target.value)
+                  set이름(e.target.value)
                 }}></input>
               </div>
             </div>
@@ -74,7 +74,7 @@ function ResvPage(props) {
                     } else {
                       setshow3('')
                     } 
-                  set부서(e.target.value)
+                  set번호(e.target.value)
                 }}></input>
               </div>
             </div>

@@ -347,7 +347,7 @@ app.get('/resultsum', function(요청, 응답) {
 
 app.get('/reserve', function(요청, 응답) {
   db.query(`
-  select * from reservation;
+  select * from reservation order by field(id,1,2,3,4,5,6,7,8,9,10);
   `, function (error, result) {
     if(error) {
       console.log(error);

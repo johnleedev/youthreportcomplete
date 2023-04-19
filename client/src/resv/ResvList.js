@@ -17,7 +17,7 @@ function ResvList(props) {
   let [자리, set자리] = useState('')
 
   useMemo(()=>{ return (
-    axios.get('/reserve').then((결과)=>{
+    axios.get('/reserve').then((결과)=>{  
       console.log(결과.data)
       let copy = [...결과.data]
       setresult(copy)
@@ -31,12 +31,21 @@ function ResvList(props) {
     s5_dep: "16", s5_phone: "18", s5_user: "17", s6_dep: "19", s6_phone: "21", s6_user: "20",
     s7_dep: "22", s7_phone: "24", s7_user: "23", s8_dep: "25", s8_phone: "27", s8_user: "26",
     s9_dep: "28", s9_phone: "30", s9_user: "29"
-  }, {}, {}, {}, {}, {}, {}, {}, {}
+  }, {}, {}, {}, {}, {}, {}, {}, {}, {}
   ])
   
 
   return (
       <div className="resvlist">
+
+        <div className='resvlist_notice'>
+          <div className='resvlist_notice_inner'>
+            <FontAwesomeIcon icon={faUser}/>모양을 누르시면, 입력란이 나옵니다.
+          </div>
+          <div className='resvlist_notice_inner'>
+            이미 예약되어 있는 시간은, 예약할 수 없습니다.
+          </div>
+        </div>
 
       <Routes>
         <Route path="/" element={
