@@ -65,7 +65,7 @@ function ResvPage(props) {
           </div>
           <div className='resv_pg_box dep phone'>
             <div className='resv_pg_sub top'>
-              <div className='text'>번호</div>
+              <div className='text'>폰번호</div>
               <div className='input'>
                 <input id='input3'
                   onInput={(e)=>{
@@ -87,21 +87,33 @@ function ResvPage(props) {
             <div className='button'>
 
               <button onClick={()=>{
-
+                if (부서 === '' || 이름 === '' || 번호 === '' || 부서 === null || 이름 === null || 번호 === null ) {
+                  alert ("빈칸을 입력해주세요")
+                  return
+                } 
+                if (부서 !== '' || 이름 !== '' || 번호 !== '' || 부서 !== null || 이름 !== null || 번호 !== null ) {
                 axios.post('/reserveadd', {
                   id : props.id,
                   place : props.자리,
                   dep : 부서,
                   name : 이름,
                   phone : 번호
-                }).then((결과)=>{
-                  alert(결과.data);
-                }).catch(()=>{console.log('실패함')});
+                })
+                .then((res)=>{
+                  alert(res.data);
+                })
+                .catch(()=>{console.log('실패함')})
+                } else {
+                  return
+                }
+                
 
                 $('#input1').val('')
                 $('#input2').val('')
                 $('#input3').val('')
-                
+
+                navigate('/resv')
+
               }}>입력하기</button>
 
             </div>

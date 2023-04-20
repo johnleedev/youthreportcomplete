@@ -16,25 +16,25 @@ app.use(cors());
 
 
 // 클라우드 업로드용 (naver)
-// var mysql = require('mysql');
-// var db = mysql.createPool({
-//   host     : 'localhost',
-//   port     : '3306',
-//   user     : 'root',
-//   password : '',
-//   database : 'report'
-// });
-
-// 내 컴퓨터 용
 var mysql = require('mysql');
-const { request } = require('https');
-var db = mysql.createConnection({
+var db = mysql.createPool({
   host     : 'localhost',
+  port     : '3306',
   user     : 'root',
-  password : 'gksksla',
+  password : '',
   database : 'report'
 });
-db.connect();
+
+// 내 컴퓨터 용
+// var mysql = require('mysql');
+// const { request } = require('https');
+// var db = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'root',
+//   password : 'gksksla',
+//   database : 'report'
+// });
+// db.connect();
 
 
 ///////////// 로그인
@@ -365,22 +365,24 @@ app.post('/reserveadd', function(요청, 응답){
   var name = 요청.body.name;
   var phone = 요청.body.phone;
   db.query(`
-  UPDATE reservation SET ${place}_dep = '${dep}', ${place}_user = '${name}', ${place}_phone = '${phone}' WHERE id = '${id+1}';
+  SELECT IFNULL(${place}_user, true) as result FROM reservation WHERE id = '${id+1}';
   `,function(error, result){
   if (error) {throw error}
-  if (result.affectedRows > 0) {            
-    응답.send("입력되었습니다!");
-    응답.end();
+  if (result[0].result === '1') {        
+    db.query(`
+    UPDATE reservation SET ${place}_dep = '${dep}', ${place}_user = '${name}', ${place}_phone = '${phone}' WHERE id = '${id+1}';
+    `,function(error, result){
+    if (error) {throw error}
+    if (result.affectedRows > 0) {            
+      응답.send("예약 되었습니다!");
+      응답.end();
+    } else {
+      return
+    }})
   } else {
-    응답.send("중복된 이름이 있거나 입력 정보가 올바르지 않습니다.");  
+    응답.send("이미 예약되어 있습니다.");  
   }})
 });
-
-
-
-
-
-
 
 
 

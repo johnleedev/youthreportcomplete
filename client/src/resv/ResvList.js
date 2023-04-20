@@ -40,10 +40,14 @@ function ResvList(props) {
 
         <div className='resvlist_notice'>
           <div className='resvlist_notice_inner'>
-            <FontAwesomeIcon icon={faUser}/>모양을 누르시면, 입력란이 나옵니다.
+            <FontAwesomeIcon icon={faUser}/>모양을 누르시면, 예약할 수 있습니다.
           </div>
           <div className='resvlist_notice_inner'>
             이미 예약되어 있는 시간은, 예약할 수 없습니다.
+          </div>
+          <div className='resvlist_notice_inner add'>
+          Main스텝 : 한 부스의 메인 스텝으로서, 처음부터 마칠 때까지 담당하여 책임져주시면 됩니다.
+          <br></br><br></br>보조스텝 : 1시간30분이나 1시간 정도 섬겨주시는 자리입니다. 중복 선택도 가능합니다. 가능한 시간 모두 선택해주시면 감사하겠습니다
           </div>
         </div>
 

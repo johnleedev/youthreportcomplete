@@ -12,11 +12,28 @@ function Resv(props) {
   return (
     <div className="resv">
 
-      <div className="title">
-      신난데이 스텝 예약하기↓
+      <div className="cover_content">
+        <div className="title">
+        신난데이 스텝 예약하기↓
+        </div>
+        <div className="box">
+          <button onClick={()=>{
+            navigate('/resvlist')
+          }}>예약하기</button>      
+        </div>
       </div>
+      
 
       <div className='cover_img'>
+        <div className='imgbox'>
+          <div className='titlename'>신난데이 스텝예약 안내</div>
+          <div className='notice'>
+          샬롬^^ 반야월교회 모든 주일학교 선생님과 학부모님의 삶 속에 하나님의 평안이 가득하길 기도합니다.
+          <br></br><br></br>저희 주일학교에서 어린이날을 맞이하여 어린이날 행사 “신난데이”(5월7일)를 준비중에 있습니다. 각부서가 준비하는 먹거리와 다양한 놀거리들을 준비하고 있습니다. 
+          <br></br><br></br>특별히 다음 부스들은 많은 분들의 섬김의 손길이 필요합니다. 많은 분들의 섬김으로 더욱 풍성하고 아름다운 행사가 되길 소망합니다. 선생님들과 학부모님들의 많은 관심과 섬김을 기다리겠습니다^^ 
+          <br></br><br></br>하나님이 기뻐하시고 아이들이 행복할 수 있는 신난데이가 될 수 있도록 기도 부탁드립니다. 감사합니다!
+          </div>
+        </div>
         <div className='imgbox'>
           <div className='titlename'>1. 놀이기구</div>
           <div className='img'><img src={`${state.images[0].img}`}></img></div>

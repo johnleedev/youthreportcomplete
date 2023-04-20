@@ -1,9 +1,10 @@
 .resv_pg {
   width: 100vw;
-  height: 100vh;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
 }
 .resv_pg_cover {
   width: 300px;
