@@ -21,6 +21,7 @@ import Report from './report/Report';
 import FindDup from './FindDup';
 import Resv from './resv/Resv';
 import ResvList from './resv/ResvList';
+import ResvListDelete from './resv/ResvListDelete';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
         <Route path="/finddup" element={<FindDup></FindDup>}/>
         <Route path="/resv" element={<Resv></Resv>}/>
         <Route path="/resvlist/*" element={<ResvList></ResvList>}/>
+        <Route path="/resvdelete" element={<ResvListDelete></ResvListDelete>}/>
 
       </Routes>
      

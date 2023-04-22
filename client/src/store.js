@@ -49,7 +49,9 @@ let images = createSlice({
     {n:7, img:"/img/7.jpg"},
     {n:8, img:"/img/8.jpg"},
     {n:9, img:"/img/9.jpg"},
-    {n:10, img:"/img/10.jpg"}
+    {n:10, img:"/img/10.jpg"},
+    {n:11, img:"/img/11.jpg"},
+    {n:12, img:"/img/12.jpg"}
   ]
 }) 
 

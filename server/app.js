@@ -16,25 +16,25 @@ app.use(cors());
 
 
 // 클라우드 업로드용 (naver)
-// var mysql = require('mysql');
-// var db = mysql.createPool({
-//   host     : 'localhost',
-//   port     : '3306',
-//   user     : 'root',
-//   password : '',
-//   database : 'report'
-// });
-
-// 내 컴퓨터 용
 var mysql = require('mysql');
-const { request } = require('https');
-var db = mysql.createConnection({
+var db = mysql.createPool({
   host     : 'localhost',
+  port     : '3306',
   user     : 'root',
-  password : 'gksksla',
+  password : '',
   database : 'report'
 });
-db.connect();
+
+// 내 컴퓨터 용
+// var mysql = require('mysql');
+// const { request } = require('https');
+// var db = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'root',
+//   password : 'gksksla',
+//   database : 'report'
+// });
+// db.connect();
 
 
 ///////////// 로그인
@@ -347,7 +347,7 @@ app.get('/resultsum', function(요청, 응답) {
 
 app.get('/reserve', function(요청, 응답) {
   db.query(`
-  select * from reservation order by field(id,1,2,3,4,5,6,7,8,9,10);
+  select * from reservation order by field(id,1,2,3,4,5,6,7,8,9,10,11,12);
   `, function (error, result) {
     if(error) {
       console.log(error);
@@ -376,6 +376,21 @@ app.post('/reserveadd', function(요청, 응답){
   }})
 });
 
+app.post('/reservedelete', function(요청, 응답){
+  console.log(요청.body)
+  var id = 요청.body.id;
+  var place = 요청.body.place;
+  db.query(`
+  UPDATE reservation SET ${place}_dep = '', ${place}_user = '', ${place}_phone = '' WHERE id = '${id+1}';
+  `,function(error, result){
+  if (error) {throw error}
+  if (result.affectedRows > 0) {            
+    응답.send("삭제되었습니다!");
+    응답.end();
+  } else {
+    응답.send("중복된 이름이 있거나 입력 정보가 올바르지 않습니다.");  
+  }})
+});
 
 
 

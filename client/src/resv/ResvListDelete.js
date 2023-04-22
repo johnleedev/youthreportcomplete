@@ -8,7 +8,7 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import ReservePage from './ResvPage';
 
-function ResvList(props) {
+function ResvListDelete(props) {
   
   let state = useSelector((state) => { return state } )
   let navigate = useNavigate();
@@ -33,36 +33,23 @@ function ResvList(props) {
     s9_dep: "28", s9_phone: "30", s9_user: "29"
   }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
   ])
+
+  function Delete (id, 자리) {
+
+    axios.post('/reservedelete', {
+      id : id,
+      place : 자리
+    }).then((결과)=>{
+      alert(결과.data);
+    }).catch(()=>{console.log('실패함')});
+    
+  }
   
 
   return (
       <div className="resvlist">
 
-        <div className='resvlist_notice'>
-          <div className='resvlist_notice_inner red'>
-            <FontAwesomeIcon icon={faUser}/>모양을 누르시면, 입력란이 나옵니다.
-          </div>
-          <div className='resvlist_notice_inner'>
-            이미 예약되어 있는 시간은, 예약할 수 없습니다.
-          </div>
-          <div className='resvlist_notice_inner add1'>
-          Main스텝 : 한 부스의 메인 스텝으로서, 처음부터 마칠 때까지 담당하여 책임져주시면 됩니다.
-          <br></br><br></br>보조스텝 : 1시간~1시간30분 정도 섬겨주시는 자리입니다. 중복 선택도 가능합니다. 가능한 시간 모두 선택해주시면 감사하겠습니다.
-          </div>
-          <div className='resvlist_notice_inner add2 red'>
-            스텝 모집은 4/30(주일)까지 진행합니다. 스텝 예약이 없는 기구나 부스는, 제외 될 수 있습니다.
-          </div>
-          <div className='resvlist_notice_inner add3'>
-          - 스텝 부스 현황 -
-          <br></br>1.놀이기구부스 : 밀리터리 바운스, 중형바운스1, 중형바운스2
-          <br></br>2.미션부스 : 투호, 고리던지기, 주사위던지기, 딱지치기, 축구공차기, 제기차기, 다리가위바위보, 구절쓰기
-          <br></br>3.먹거리부스 : 추억의과자 (다른 먹거리 부스들은 각 부서에서 담당합니다)
-          </div>
-        </div>
-
-      <Routes>
-        <Route path="/" element={
-          <div className="resvlist">
+        <div className="resvlist">
         {
           result.map((a,i)=>{
             return ( 
@@ -91,6 +78,7 @@ function ResvList(props) {
                       <div className="resvlist_text_lt">
                         <button className='button' onClick={()=>{
                             set자리('m'); setid(i); navigate('/resvlist/resvpage');
+                            Delete(i, 'm')
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].m_dep}
                       </div>
                       <div className="resvlist_text_rt">{result[i].m_user}</div>
@@ -110,6 +98,7 @@ function ResvList(props) {
                         <div className="resvlist_text_lt">
                         <button className='button' onClick={()=>{
                               set자리('s1'); setid(i); navigate('/resvlist/resvpage');
+                              Delete(i, 's1')
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s1_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s1_user}</div>
                       </div>
@@ -122,6 +111,7 @@ function ResvList(props) {
                         <div className="resvlist_text_lt">
                           <button className='button' onClick={()=>{
                               set자리('s2'); setid(i); navigate('/resvlist/resvpage');
+                              Delete(i, 's2')
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s2_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s2_user}</div>
                       </div>
@@ -134,6 +124,7 @@ function ResvList(props) {
                         <div className="resvlist_text_lt">
                           <button className='button' onClick={()=>{
                               set자리('s3'); setid(i); navigate('/resvlist/resvpage');
+                              Delete(i, 's3')
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s3_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s3_user}</div>
                       </div>
@@ -149,6 +140,7 @@ function ResvList(props) {
                         <div className="resvlist_text_lt">
                           <button className='button' onClick={()=>{
                               set자리('s4'); setid(i); navigate('/resvlist/resvpage');
+                              Delete(i, 's4')
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s4_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s4_user}</div>
                       </div>
@@ -161,6 +153,7 @@ function ResvList(props) {
                         <div className="resvlist_text_lt">
                           <button className='button' onClick={()=>{
                               set자리('s5'); setid(i); navigate('/resvlist/resvpage');
+                              Delete(i, 's5')
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s5_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s5_user}</div>
                       </div>
@@ -173,6 +166,7 @@ function ResvList(props) {
                         <div className="resvlist_text_lt">
                           <button className='button' onClick={()=>{
                               set자리('s6'); setid(i);  navigate('/resvlist/resvpage');
+                              Delete(i, 's6')
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s6_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s6_user}</div>
                       </div>
@@ -188,6 +182,7 @@ function ResvList(props) {
                         <div className="resvlist_text_lt">
                           <button className='button' onClick={()=>{
                               set자리('s7'); setid(i); navigate('/resvlist/resvpage');
+                              Delete(i, 's7')
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s7_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s7_user}</div>
                       </div>
@@ -200,6 +195,7 @@ function ResvList(props) {
                         <div className="resvlist_text_lt">
                           <button className='button' onClick={()=>{
                               set자리('s8'); setid(i); navigate('/resvlist/resvpage');
+                              Delete(i, 's8')
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s8_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s8_user}</div>
                       </div>
@@ -212,6 +208,7 @@ function ResvList(props) {
                         <div className="resvlist_text_lt">
                           <button className='button' onClick={()=>{
                               set자리('s9'); setid(i); navigate('/resvlist/resvpage');
+                              Delete(i, 's9')
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s9_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s9_user}</div>
                       </div>
@@ -247,15 +244,7 @@ function ResvList(props) {
           }
 
       </div>
-        }></Route>
-
-        <Route path="/resvpage" element={<ReservePage
-          id={id} 자리={자리}
-        ></ReservePage>}/>
-
-      </Routes>    
-
-
+    
       
 
     </div>
@@ -263,5 +252,5 @@ function ResvList(props) {
   );
 }
 
-export default ResvList;
+export default ResvListDelete;
 
