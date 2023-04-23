@@ -31,7 +31,7 @@ function ResvPage(props) {
               <div className='input'>
                 <input id='input1'
                   onInput={(e)=>{
-                    if (!/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(e.target.value)) {
+                    if (e.target.value !== '' && !/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(e.target.value)) {
                       setshow1('show')
                     } else {
                       setshow1('')
@@ -50,7 +50,7 @@ function ResvPage(props) {
               <div className='input'>
                 <input id='input2'
                   onInput={(e)=>{
-                    if (!/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(e.target.value)) {
+                    if (e.target.value !== '' && !/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(e.target.value)) {
                       setshow2('show')
                     } else {
                       setshow2('')
@@ -69,7 +69,7 @@ function ResvPage(props) {
               <div className='input'>
                 <input id='input3'
                   onInput={(e)=>{
-                    if (!/^\d{3}-\d{3,4}-\d{4}$/.test(e.target.value)) {
+                    if (e.target.value !== '' && !/^010-?([0-9]{4})-?([0-9]{4})$/.test(e.target.value)) {
                       setshow3('show')
                     } else {
                       setshow3('')
@@ -80,27 +80,35 @@ function ResvPage(props) {
             </div>
           </div>
           <div className={classnames('resv_pg_box arlam', {show3})}>
-              010-0000-0000 양식에 맞게 입력해주세요
+              양식이 맞지 않습니다.
           </div>
 
           <div className='resv_pg_button'>
             <div className='button'>
 
               <button onClick={()=>{
+                if (!/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(부서) || 
+                    !/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(이름) || 
+                    !/^010-?([0-9]{4})-?([0-9]{4})$/.test(번호)
+                ){
+                  alert('양식에 맞게 입력해주세요')
+                } else {
+                  axios.post('/reserveadd', {
+                    id : props.id,
+                    place : props.자리,
+                    dep : 부서,
+                    name : 이름,
+                    phone : 번호
+                  }).then((결과)=>{
+                    alert(결과.data);
+                  }).catch(()=>{console.log('실패함')});
+  
+                  $('#input1').val('')
+                  $('#input2').val('')
+                  $('#input3').val('')
+                }
 
-                axios.post('/reserveadd', {
-                  id : props.id,
-                  place : props.자리,
-                  dep : 부서,
-                  name : 이름,
-                  phone : 번호
-                }).then((결과)=>{
-                  alert(결과.data);
-                }).catch(()=>{console.log('실패함')});
-
-                $('#input1').val('')
-                $('#input2').val('')
-                $('#input3').val('')
+                
                 
               }}>입력하기</button>
 

@@ -15,7 +15,7 @@ function ResvList(props) {
 
   let [id, setid] = useState('')
   let [자리, set자리] = useState('')
-
+    
   useMemo(()=>{ return (
     axios.get('/reserve').then((결과)=>{  
       console.log(결과.data)
@@ -25,22 +25,30 @@ function ResvList(props) {
   ) }, [])
 
   let [result, setresult] = useState([{
-    const: "const1", const_sub: "바운스", id: "1", m_dep: "고등부", m_phone: "010-9584-4567",  m_user: "이요한", 
-    s1_dep: "영유아2부",  s1_phone: "010-1324-7894",  s1_user: "이송혜",  s2_dep: "7",  s2_phone: "9",  s2_user: "8",
+    const: "const1", const_sub: "바운스", id: "1", m_dep: "", m_phone: "010-9584-4567",  m_user: "이요한", 
+    s1_dep: "영유아2부",  s1_phone: "010-1324-7894",  s1_user: "이송혜",  s2_dep: "영유아부",  s2_phone: "010-1234-5678",  s2_user: "조효정",
     s3_dep: "영유아3부", s3_phone: "010-1234-7894", s3_user: "우덕인", s4_dep: "13", s4_phone: "15", s4_user: "14",
     s5_dep: "16", s5_phone: "18", s5_user: "17", s6_dep: "19", s6_phone: "21", s6_user: "20",
     s7_dep: "22", s7_phone: "24", s7_user: "23", s8_dep: "25", s8_phone: "27", s8_user: "26",
     s9_dep: "28", s9_phone: "30", s9_user: "29"
   }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
   ])
-  
 
   return (
       <div className="resvlist">
 
+        {/* <button onClick={()=>{
+          console.log(list)
+        }}>test</button> */}
+
         <div className='resvlist_notice'>
           <div className='resvlist_notice_inner red'>
             <FontAwesomeIcon icon={faUser}/>모양을 누르시면, 입력란이 나옵니다.
+          </div>
+          <div className='resvlist_notice_inner red'>
+            <div><button className='button' style={{ backgroundColor: 'rgb(170, 243, 163)' }}><FontAwesomeIcon icon={faUser}/></button>예약가능</div>
+            <div>&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+            <div><button className='button' style={{ backgroundColor: '#dbdbdb' }}><FontAwesomeIcon icon={faUser}/></button>예약완료</div>
           </div>
           <div className='resvlist_notice_inner'>
             이미 예약되어 있는 시간은, 예약할 수 없습니다.
@@ -84,19 +92,24 @@ function ResvList(props) {
                   <div className="resvlist_text">13:00<br></br>~14:00</div>
                   <div className="resvlist_text">14:00<br></br>~15:00</div>
                 </div>
+
                 <div className="resvlist_reservebox1">
                   <div className="resvlist_name">Main스텝</div>
                   <div className="resvlist_text maincover">
                     <div className="resvlist_text_inner maindiv">
                       <div className="resvlist_text_lt">
-                        <button className='button' onClick={()=>{
+                        <button 
+                            style={ result[i].m_dep === null || result[i].m_dep === "" 
+                            ? { backgroundColor: 'rgb(170, 243, 163)' } : { backgroundColor: '#dbdbdb' } }
+                            className='button' onClick={()=>{
                             set자리('m'); setid(i); navigate('/resvlist/resvpage');
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].m_dep}
                       </div>
                       <div className="resvlist_text_rt">{result[i].m_user}</div>
                     </div>
                     <div className="resvlist_text_inner">
-                      {result[i].m_phone}
+                      <a href={`tel:${result[i].m_phone}`}>
+                      {result[i].m_phone}</a>
                     </div>
                   </div>
                 </div>
@@ -108,37 +121,50 @@ function ResvList(props) {
                     <div className="resvlist_text_box">
                       <div className="resvlist_text_inner">
                         <div className="resvlist_text_lt">
-                        <button className='button' onClick={()=>{
+                        <button 
+                              style={ result[i].s1_dep === null || result[i].s1_dep === "" 
+                              ? { backgroundColor: 'rgb(170, 243, 163)' } : { backgroundColor: '#dbdbdb' } }
+                              className='button' onClick={()=>{
                               set자리('s1'); setid(i); navigate('/resvlist/resvpage');
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s1_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s1_user}</div>
                       </div>
                       <div className="resvlist_text_inner">
-                      {result[i].s1_phone}
+                      <a href={`tel:${result[i].s1_phone}`}>
+                      {result[i].s1_phone}</a>
                       </div>
                     </div>
+                    
                     <div className="resvlist_text_box">
                       <div className="resvlist_text_inner">
                         <div className="resvlist_text_lt">
-                          <button className='button' onClick={()=>{
+                          <button 
+                              style={ result[i].s2_dep === null || result[i].s2_dep === "" 
+                              ? { backgroundColor: 'rgb(170, 243, 163)' } : { backgroundColor: '#dbdbdb' } }
+                              className='button' onClick={()=>{
                               set자리('s2'); setid(i); navigate('/resvlist/resvpage');
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s2_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s2_user}</div>
                       </div>
                       <div className="resvlist_text_inner">
-                      {result[i].s2_phone}
+                      <a href={`tel:${result[i].s2_phone}`}>
+                      {result[i].s2_phone}</a>
                       </div>
                     </div>
                     <div className="resvlist_text_box">
                       <div className="resvlist_text_inner">
                         <div className="resvlist_text_lt">
-                          <button className='button' onClick={()=>{
+                          <button 
+                              style={ result[i].s3_dep === null || result[i].s3_dep === "" 
+                              ? { backgroundColor: 'rgb(170, 243, 163)' } : { backgroundColor: '#dbdbdb' } }
+                              className='button' onClick={()=>{
                               set자리('s3'); setid(i); navigate('/resvlist/resvpage');
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s3_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s3_user}</div>
                       </div>
                       <div className="resvlist_text_inner">
-                      {result[i].s3_phone}
+                      <a href={`tel:${result[i].s3_phone}`}>
+                      {result[i].s3_phone}</a>
                       </div>
                     </div>
                   </div>
@@ -147,37 +173,49 @@ function ResvList(props) {
                     <div className="resvlist_text_box">
                       <div className="resvlist_text_inner">
                         <div className="resvlist_text_lt">
-                          <button className='button' onClick={()=>{
+                          <button 
+                              style={ result[i].s4_dep === null || result[i].s4_dep === "" 
+                              ? { backgroundColor: 'rgb(170, 243, 163)' } : { backgroundColor: '#dbdbdb' } }
+                              className='button' onClick={()=>{
                               set자리('s4'); setid(i); navigate('/resvlist/resvpage');
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s4_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s4_user}</div>
                       </div>
                       <div className="resvlist_text_inner">
-                      {result[i].s4_phone}
+                      <a href={`tel:${result[i].s4_phone}`}>
+                      {result[i].s4_phone}</a>
                       </div>
                     </div>
                     <div className="resvlist_text_box">
                       <div className="resvlist_text_inner">
                         <div className="resvlist_text_lt">
-                          <button className='button' onClick={()=>{
+                          <button 
+                              style={ result[i].s5_dep === null || result[i].s5_dep === "" 
+                              ? { backgroundColor: 'rgb(170, 243, 163)' } : { backgroundColor: '#dbdbdb' } }
+                              className='button' onClick={()=>{
                               set자리('s5'); setid(i); navigate('/resvlist/resvpage');
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s5_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s5_user}</div>
                       </div>
                       <div className="resvlist_text_inner">
-                      {result[i].s5_phone}
+                      <a href={`tel:${result[i].s5_phone}`}>
+                      {result[i].s5_phone}</a>
                       </div>
                     </div>
                     <div className="resvlist_text_box">
                       <div className="resvlist_text_inner">
                         <div className="resvlist_text_lt">
-                          <button className='button' onClick={()=>{
+                          <button 
+                              style={ result[i].s6_dep === null || result[i].s6_dep === "" 
+                              ? { backgroundColor: 'rgb(170, 243, 163)' } : { backgroundColor: '#dbdbdb' } }
+                              className='button' onClick={()=>{
                               set자리('s6'); setid(i);  navigate('/resvlist/resvpage');
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s6_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s6_user}</div>
                       </div>
                       <div className="resvlist_text_inner">
-                      {result[i].s6_phone}
+                      <a href={`tel:${result[i].s6_phone}`}>
+                      {result[i].s6_phone}</a>
                       </div>
                     </div>
                   </div>
@@ -186,37 +224,49 @@ function ResvList(props) {
                     <div className="resvlist_text_box">
                       <div className="resvlist_text_inner">
                         <div className="resvlist_text_lt">
-                          <button className='button' onClick={()=>{
+                          <button 
+                              style={ result[i].s7_dep === null || result[i].s7_dep === "" ? 
+                              { backgroundColor: 'rgb(170, 243, 163)' } : { backgroundColor: '#dbdbdb' } }
+                              className='button' onClick={()=>{
                               set자리('s7'); setid(i); navigate('/resvlist/resvpage');
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s7_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s7_user}</div>
                       </div>
                       <div className="resvlist_text_inner">
-                      {result[i].s7_phone}
+                      <a href={`tel:${result[i].s7_phone}`}>
+                      {result[i].s7_phone}</a>
                       </div>
                     </div>
                     <div className="resvlist_text_box">
                       <div className="resvlist_text_inner">
                         <div className="resvlist_text_lt">
-                          <button className='button' onClick={()=>{
+                          <button 
+                              style={ result[i].s8_dep === null || result[i].s8_dep === "" ? 
+                              { backgroundColor: 'rgb(170, 243, 163)' } : { backgroundColor: '#dbdbdb' } }
+                              className='button' onClick={()=>{
                               set자리('s8'); setid(i); navigate('/resvlist/resvpage');
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s8_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s8_user}</div>
                       </div>
                       <div className="resvlist_text_inner">
-                      {result[i].s8_phone}
+                      <a href={`tel:${result[i].s8_phone}`}>
+                      {result[i].s8_phone}</a>
                       </div>
                     </div>
                     <div className="resvlist_text_box">
                       <div className="resvlist_text_inner">
                         <div className="resvlist_text_lt">
-                          <button className='button' onClick={()=>{
+                          <button 
+                              style={ result[i].s9_dep === null || result[i].s9_dep === "" ? 
+                              { backgroundColor: 'rgb(170, 243, 163)' } : { backgroundColor: '#dbdbdb' } }
+                              className='button' onClick={()=>{
                               set자리('s9'); setid(i); navigate('/resvlist/resvpage');
                         }}><FontAwesomeIcon icon={faUser}/></button>&nbsp;{result[i].s9_dep}</div>
                         <div className="resvlist_text_rt">{result[i].s9_user}</div>
                       </div>
                       <div className="resvlist_text_inner">
-                      {result[i].s9_phone}
+                      <a href={`tel:${result[i].s9_phone}`}>
+                      {result[i].s9_phone}</a>
                       </div>
                     </div>
                   </div>
