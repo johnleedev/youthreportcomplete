@@ -61,10 +61,15 @@
 
 .resv_pg_button {
   width: 300px;
+  background-color: red;
 }
 
+.resv_pg_button .button {
+  width: 300px;
+  height: 60px;
+}
 .resv_pg_button .button button{
-  width: 100%;
+  width: 300px;
   height: 60px;
   font-size: 20px;
 }

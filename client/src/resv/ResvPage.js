@@ -101,6 +101,7 @@ function ResvPage(props) {
                     phone : 번호
                   }).then((결과)=>{
                     alert(결과.data);
+                    navigate('/resv')
                   }).catch(()=>{console.log('실패함')});
   
                   $('#input1').val('')
