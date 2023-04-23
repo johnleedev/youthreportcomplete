@@ -65,7 +65,7 @@ function ResvPage(props) {
           </div>
           <div className='resv_pg_box dep phone'>
             <div className='resv_pg_sub top'>
-              <div className='text'>번호</div>
+              <div className='text'>폰번호</div>
               <div className='input'>
                 <input id='input3'
                   onInput={(e)=>{

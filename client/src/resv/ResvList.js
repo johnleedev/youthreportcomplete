@@ -278,11 +278,11 @@ function ResvList(props) {
               <div className="resvlist_contact">
                 <div className='resvlist_contactbox'>
                   <div className='contact_font'>
-                    <a href='tel:010-9584-5948'>
-                    <FontAwesomeIcon icon={faPhone}/><span></span> (클릭)</a> 예약삭제요청 및 문의 
+                    <a href='sms:010-9584-5948?body=00시부터00시까지 예약한 00부 000. 삭제요청 드립니다'>
+                    <FontAwesomeIcon icon={faPhone}/><span></span> (클릭)</a> 예약삭제요청 및 문의
                   </div>
                   <div className='contact_font'>
-                  <a href='tel:010-9584-5948'>
+                  <a href='sms:010-9584-5948?body=00시부터00시까지 예약한 00부 000. 삭제요청 드립니다'>
                   010-9584-5948</a>
                   으로 문자나 카톡을 남겨주세요
                   </div>
