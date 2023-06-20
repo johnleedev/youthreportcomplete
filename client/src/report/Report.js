@@ -1,150 +1,42 @@
 /*eslint-disable*/
-import { React, useMemo, useState } from 'react';
-import { Routes, Route, useNavigate, Link } from 'react-router-dom';
+import { React, useMemo, useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux"
 import axios from 'axios'
 import './Report.css';
+import sundaylist from "../dep/sundaylist";
 import Result from './Result';
-import Modify from './Modify';
 import LastResult from './LastResult';
-import BasicDatedata from '../depdatabasic/BasicDatedata'
-import Basicgroup from '../depdatabasic/Basicgroup'
-import Basicgroup2 from '../depdatabasic/Basicgoup2'
+import MainURL from '../MainURL';
 
-function Report(props) {
+function Report() {
   
   let state = useSelector((state) => { return state } )
   let navigate = useNavigate();
 
   useMemo(()=>{ return (
-    axios.get(`/date`).then((결과)=>{ 
-      console.log(결과.data)
-      let copy = [...결과.data]
-      setdate_data(copy)
-    }),
-    axios.get(`/info`).then((결과)=>{ 
-      console.log(결과.data)
-      let copy = [...결과.data]
+    axios.get(`${MainURL}/info`).then((res)=>{ 
+      let copy = [...res.data]
       setinfo(copy)
-    }),
-    axios.get(`/depage`).then((결과)=>{ 
-      console.log(결과.data)
-      let copy = [...결과.data]
-      setdepage(copy)
-    }),
-    axios.get(`/depgroup`).then((결과)=>{ 
-      console.log(결과.data)
-      let copy = [...결과.data]
-      setdepgroup(copy)
     })
   ) }, [])
-  let [date_data, setdate_data] = useState(BasicDatedata)
-  let [date_id, setdate_id] = useState('')
-  let [date_month, setdate_month] = useState('')
-  let [date_day, setdate_day] = useState('')
-  let [info, setinfo] = useState('')
-  let [부서data, set부서data] = useState(Basicgroup)
-  let [depage, setdepage] = useState('')
-  let [depgroup, setdepgroup] = useState('')
-  let [결석자명단, set결석자명단] = useState(Basicgroup2)
 
-
-  var date_ft = (ds) => {
-    let result = [];
-    let copy = date_data.filter(e => e.date === `${ds}`);
-    let copy2 = copy[0].month;
-    result.push(copy2);
-    let copy3 = copy[0].day
-    result.push(copy3);
-    return result
-  }
-  
-  var date_ft2 = (ds) => {
-    let copy = date_data.filter(e => e.date === `${ds}`);
-    let result = copy[0].id;
-   return result
-  }
-
-  let y_copy = 부서data.map(e => e.da)
-  let y_n = [...new Set(y_copy)] // ['1-1', '1-2', '1-3']
-
-  var 소그룹별출석인원_출석1 = (dn) => {
-    let dep_da = 부서data.filter(e => e.da === `${dn}`)
-    let dag_num_copy = dep_da.map(e => e.dag)
-    let dag_num = [...new Set(dag_num_copy)]
-    let result1 = {...출석1}
-    let 부서출석 = 부서data.filter(e => eval("e.day"+(`${date_id}`)) === '1')  
-    for (var i = 0; i < 11; i++) {
-      let copy = 부서출석.filter(e => e.dag === `${dag_num[i]}`).length
-      if (copy > 0) {
-        result1[i] = (copy);      
-      } else {
-        result1[i] = '';
-      }
-    }
-    출석1변경(result1)
-    return result1
-  }
-  var 소그룹별출석인원_출석2 = (dn) => {
-    let dep_da = 부서data.filter(e => e.da === `${dn}`)
-    let dag_num_copy = dep_da.map(e => e.dag)
-    let dag_num = [...new Set(dag_num_copy)]
-    let result2 = {...출석2}
-    let 부서출석 = 부서data.filter(e => eval("e.day"+(`${date_id}`)) === '1')  
-    for (var i = 0; i < 11; i++) {
-      let copy = 부서출석.filter(e => e.dag === `${dag_num[i]}`).length
-      if (copy > 0) {
-        result2[i] = (copy);      
-      } else {
-        result2[i] = '';
-      }
-    }
-    출석2변경(result2)
-    return result2
-  }
-  var 소그룹별출석인원_출석3 = (dn) => {
-    let dep_da = 부서data.filter(e => e.da === `${dn}`)
-    let dag_num_copy = dep_da.map(e => e.dag)
-    let dag_num = [...new Set(dag_num_copy)]
-    let result3 = {...출석3}
-    let 부서출석 = 부서data.filter(e => eval("e.day"+(`${date_id}`)) === '1')  
-    for (var i = 0; i < 11; i++) {
-      let copy = 부서출석.filter(e => e.dag === `${dag_num[i]}`).length
-      if (copy > 0) {
-        result3[i] = (copy);      
-      } else {
-        result3[i] = '';
-      }
-    }
-    출석3변경(result3)
-    return result3
-  }
-
-  let 부서결석 = 부서data.filter(e => eval("e.day"+(`${date_id}`)) !== '1')
-
-  let 빈박스50개 = ({
-    1:'', 2:'', 3:'', 4:'', 5:'', 6:'', 7:'', 8:'', 9:'', 10:'', 11:'', 12:'', 13:'', 14:'', 15:'', 16:'',
-    17:'', 18:'', 19:'', 20:'', 21:'', 22:'', 23:'', 24:'', 25:'', 26:'', 27:'', 28:'', 29:'', 30:'', 31:'', 32:'',
-    33:'', 34:'', 35:'', 36:'', 37:'', 38:'', 39:'', 40:'', 41:'', 42:'', 43:'', 44:'', 45:'', 46:'', 47:'', 48:'',
-    49:'', 50:''
-  })
-  let 빈박스11개 = ({
-    1:'', 2:'', 3:'', 4:'', 5:'', 6:'', 7:'', 8:'', 9:'', 10:'', 11:''
-  })
-  
-   
-  
   const date = new Date();
   const year = date.getFullYear();
 
-  let [년, 년변경] = useState(year)
-  let [월, 월변경] = useState(date_month)
-  let [일, 일변경] = useState(date_day)
-  let [째주, 째주변경] = useState('')
+  let [date_month, setdate_month] = useState('')
+  let [date_day, setdate_day] = useState('')
+  let [date_num, setdate_num] = useState('')
+
+  let [info, setinfo] = useState('')
+  let [부서data, set부서data] = useState([])
+
+  const dep_year_copy = 부서data.map((e) => e.da_ko);
+  const dep_year = [...new Set(dep_year_copy)];
+  const group_copy = 부서data.map((e) => e.dag_ko);
+  const group_name = [...new Set(group_copy)];
 
   let [부서, 부서변경] = useState('')
-  let [반, 반변경] = useState('')
-  let [학년, 학년변경] = useState('')
   let [재적, 재적변경] = useState('')
 
   let [예배기도자, 예배기도자변경] = useState('')
@@ -152,34 +44,86 @@ function Report(props) {
   let [설교자, 설교자변경] = useState('')
   let [설교제목, 설교제목변경] = useState('')
 
-  let [헌금, 헌금변경] = useState({1:'', 2:'', 3:'', 4:''})
-  let [헌금합계, 헌금합계변경] = useState('')
-  헌금합계 = parseInt(헌금[1] || 0)+parseInt(헌금[2] || 0)+parseInt(헌금[3] || 0)+parseInt(헌금[4] || 0)
+  // 헌금 
+  let [헌금, 헌금변경] = useState({ 1: '', 2: '', 3: '', 4: '' });
+  let [헌금합계, 헌금합계변경] = useState('');
+  
+  const calculateTotal = () => {
+    const 합계 =
+      parseInt(헌금[1].replace(/[^0-9]/g, '') || 0) +
+      parseInt(헌금[2].replace(/[^0-9]/g, '') || 0) +
+      parseInt(헌금[3].replace(/[^0-9]/g, '') || 0) +
+      parseInt(헌금[4].replace(/[^0-9]/g, '') || 0);
+    return 합계;
+  };
+  const handleChange헌금 = (key, value) => {
+    헌금변경(prevState => ({
+      ...prevState,
+      [key]: value
+    }));
+  };
+  const formatCurrency = (value) => {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
 
-  let [출석1, 출석1변경] = useState(빈박스11개)
-  let [출석1합계] = useState('')
-  let sum1 = 0; for (var i = 0; i < 11; i++) {sum1 += parseInt(출석1[i] || 0)} 출석1합계 = sum1;
-  
-  let [출석2, 출석2변경] = useState(빈박스11개)
-  let [출석2합계] = useState('')
-  let sum2 = 0; for (var i = 0; i < 11; i++) {sum2 += parseInt(출석2[i] || 0)} 출석2합계 = sum2;
-  
-  let [출석3, 출석3변경] = useState(빈박스11개)
-  let [출석3합계] = useState('')
-  let sum3 = 0; for (var i = 0; i < 11; i++) {sum3 += parseInt(출석3[i] || 0)} 출석3합계 = sum3;
-  
+  useEffect(() => {
+    const 합계 = calculateTotal();
+    헌금합계변경(합계);
+  }, [헌금]);
+
+
+  // 출석입력
+  let 박스 = [1,2,3,4,5,6,7,8,9,10,11]
+  let [출석, 출석변경] = useState([],[],[]);
+  let [출석합계, 출석합계변경] = useState({});
+  let [새친구, 새친구변경] = useState('');
   let [총계, 총계변경] = useState('')
-  총계 = parseInt(출석1합계 || 0)+parseInt(출석2합계 || 0)+parseInt(출석3합계 || 0)
-  let 출석 = [1,2,3,4,5,6,7,8,9,10,11]
 
-
-  let [소그룹, 소그룹변경] = useState(빈박스50개)
-  let [결석자, 결석자변경] = useState(빈박스50개)
-  let [사유, 사유변경] = useState(빈박스50개)
-
-
-
+  var 부서출석 = () => {
+    let present = [[], [], []];
+    let sum = {}
+    for (let y = 0; y < dep_year.length; y++) {
+      let yeardata = 부서data.filter(e => e.da_ko === `${dep_year[y]}`); // 학년별 데이터
+      
+      for (let a = 0; a < group_name.length; a++) {
+        let groupnum = yeardata.filter(e => e.da_ko === `${dep_year[y]}` && e.dag_ko === `${group_name[a]}`).length
+        present[y][a] = { year : dep_year[y], group : group_name[a], num : groupnum }
+      }
+      sum[`num${y+1}`] = present[y].reduce((acc, cur) => parseInt(acc || 0) + parseInt(cur.num || 0), 0);
+    }
+    출석변경(present);
+    출석합계변경(sum);
+    let result = parseInt(sum['num1'] || 0)+parseInt(sum['num2'] || 0)+parseInt(sum['num3'] || 0)
+    총계변경(result);
+  }
   
+  const presentInput = (sectionIndex) => {
+    if (출석[sectionIndex]) {
+      return 출석[sectionIndex].map((attendance, i) => (
+        <input
+          key={i}
+          type="text"
+          className={`출석${sectionIndex + 1} 출석${sectionIndex + 1}-${i + 1}${sectionIndex === 1 ? ' green' : ''}`}
+          value={attendance.num}
+          onInput={(e) => {
+            const inputNum = e.target.value;
+            const copy = { ...attendance, num: parseInt(inputNum) };
+            const updatedAttendance = [...출석];
+            updatedAttendance[sectionIndex][i] = copy;
+            출석변경(updatedAttendance);
+          }}
+        />
+      ));
+    }
+    return null;
+  };
+
+  // 결석
+  let [결석자, 결석자변경] = useState([]);
+  let [사유, 사유변경] = useState([]);
+  let absent = 부서data.filter(e => eval("e.day"+(`${date_num}`)) !== '1');
+
+ 
    return (
     <div className='LastReport'>
 
@@ -187,64 +131,36 @@ function Report(props) {
       <Route path="/" element={
 
       <div className='mainwrapper'>
-
         <div className='main_notice'>주일학교 보고서는 <br></br>PC에서 작성바랍니다</div>
-
         <div className='main'>
-
           {/* 부서 초기화 버튼 */}
           <div className='buttons'>
             {
               state.부서info.map((a, i)=>{
                 return (
-                  <button className='button1' onClick={()=>{
-
-                    axios.get(`/dep/${i+1}`).then((결과)=>{ 
-                      console.log(결과.data)
-                      let copy = [...결과.data]
+                  <button key={i} className='button1' onClick={()=>{
+                    axios.get(`${MainURL}/dep/${i+1}`).then((res)=>{ 
+                      let copy = [...res.data]
                       set부서data(copy)
                     })
-
-                    학년변경(depage[i]);
-                    반변경(depgroup[i]);
-                    부서변경(info[i].dep);
+                    부서변경(state.부서info[i].dep);
                     설교자변경(info[i].ministry);
                     재적변경(info[i].all_num);
-
-                    출석1변경(빈박스11개);
-                    출석2변경(빈박스11개);
-                    출석3변경(빈박스11개);
-                    헌금변경({1:'', 2:'', 3:'', 4:''});
-                    총계변경('');
-                    set결석자명단(Basicgroup2);
-                    사유변경(빈박스50개);
-                    
                   }}>{state.부서info[i].dep}</button>
                 )
               })
             }
-
             <button className="button2 resultButton" onClick={()=>{
               navigate('/lastreport/lastresult')
             }}>전체통계</button>
-
             <button className="button2 homeButton1" onClick={()=>{
               navigate('/main')
             }}>Home</button>
-
             <button className="button2 statsButton" onClick={()=>{
-              if (date_day === '' || date_day === '') {
-                alert('날짜를 선택하세요')
-              } else if (부서 === '') {
-                alert('부서를 선택하세요')
-              } else {
-                소그룹별출석인원_출석1(`${y_n[0]}`)
-                소그룹별출석인원_출석2(`${y_n[1]}`)
-                소그룹별출석인원_출석3(`${y_n[2]}`)
-                set결석자명단(부서결석)
-              }
+              if (date_month === '' || date_day === '') {alert('날짜를 선택하세요')} 
+              else if (부서 === '') {alert('부서를 선택하세요')} 
+              else {부서출석();}
             }}>출석현황<br></br>불러오기</button>
-
           </div>
 
           {/* 날짜선택 */}
@@ -253,32 +169,21 @@ function Report(props) {
             <select className='report_dateselect_box'
               onChange={(e)=>{
                     let copy = e.target.value; 
-                    let copy2 = date_ft(copy);
-                    let copy3 = date_ft2(copy);
-                    setdate_month(copy2[0]);
-                    setdate_day(copy2[1]);
-                    setdate_id(copy3);
-
-                    출석1변경(빈박스11개);
-                    출석2변경(빈박스11개);
-                    출석3변경(빈박스11개);
-                    헌금변경({1:'', 2:'', 3:'', 4:''});
-                    총계변경('');
-                    set결석자명단(Basicgroup2);
-                    사유변경(빈박스50개);
+                    let index = e.target.selectedIndex; 
+                    setdate_month(sundaylist[index-1].month);
+                    setdate_day(sundaylist[index-1].day);
+                    setdate_num(index)
                   }}>
               <option>선택</option>
-              {  date_data.map((a,i)=>{return (<option>{date_data[i].date}</option>)})}  
+              {  sundaylist.map((a,i)=>{return (<option key={i}>{sundaylist[i].month}월{sundaylist[i].day}일</option>)})}  
             </select>
-            
           </div>
           <div className='report_dateselect_text2'>↓ 날짜를 선택하세요</div>
-          
 
           <div className='inputs'>
             <input type="text" className="부서" defaultValue={부서} />
             
-            <input type="text" className="날짜 년" defaultValue={year} onChange={(e)=>{년변경(e.target.value)}}/>
+            <input type="text" className="날짜 년" defaultValue={year}/>
             <input type="text" className="날짜 월" defaultValue={date_month} onChange={(e)=>{월변경(e.target.value)}}/>
             <input type="text" className="날짜 일" defaultValue={date_day} onChange={(e)=>{일변경(e.target.value)}}/>
             <input type="text" className="날짜 째주" onChange={(e)=>{째주변경(e.target.value)}}/>
@@ -289,90 +194,58 @@ function Report(props) {
             <input type="text" className="예배 설교제목" onChange={(e)=>{설교제목변경(e.target.value)}}/>
 
             {/* 헌금 input */}
-            {
-              [1,2,3,4].map((a)=>{
-                return (
-                  <input type="text" className={"헌금 헌금" + a}
-                  onInput={(e)=>{let copy = {...헌금}; copy[a] = e.target.value; 헌금변경(copy)}}
-                  ></input>      
-                )
-              })
-            }
-            <input type="text"  className="헌금 합계" value={헌금합계}></input>
-
+            {[1, 2, 3, 4].map((a, i) => (
+              <input
+                key={i} type="text" className={"헌금 헌금" + a} value={formatCurrency(헌금[a])}
+                onChange={(e) => {
+                  let copy = { ...헌금 };
+                  copy[a] = e.target.value.replace(/[^0-9]/g, ''); // 숫자 이외의 문자 제거
+                  handleChange헌금(a, copy[a]);
+                }}
+              />
+            ))}
+            <input type="text" className="헌금 합계" defaultValue={formatCurrency(헌금합계)} />
 
             {/* 출석현황 줄 - 반 */}
-            {
-              [1,2,3,4,5,6,7,8,9,10,11].map((a)=>{
-                return (
-                  <input type="text" className={"출석-반 출석-반" + a}
-                  defaultValue={반[a]}
-                  ></input>      
-                )
-              })
-            }
+            {박스.map((a, i)=>{
+              return (<input key={i} type="text" className={"출석-반 출석-반" + a} defaultValue={group_name[i]}/>)
+            })}
 
-            <input type="text" className="학년_세-1" defaultValue={학년[1]}/>
-            <input type="text" className="학년_세-2 green" defaultValue={학년[2]}/>
-            <input type="text" className="학년_세-3" defaultValue={학년[3]}/>
+            <input type="text" className="학년_세-1" defaultValue={dep_year[0]} />
+            <input type="text" className="학년_세-2 green" defaultValue={dep_year[1]}/>
+            <input type="text" className="학년_세-3" defaultValue={dep_year[2]}/>
 
-            {/* 출석현황 출석1 */}
-            {
-              출석.map((a, i)=>{
-                return (
-                  <input type="text" className={"출석1 출석1-" + a}
-                    defaultValue={출석1[i]}
-                    onInput={(e)=>{ let copy = {...출석1}; copy[i] = e.target.value; 출석1변경(copy)}}
-                  ></input>      
-                )
-              })
-            }
-            <input type="text" className="출석1 출석1-12" value={출석1합계}></input>
-            
-            {/* 출석현황 출석2 */}
-            {
-              출석.map((a, i)=>{
-                return (
-                  <input type="text" className={"출석2 출석2-" + a + " green"}
-                  defaultValue={출석2[i]}
-                  onInput={(e)=>{let copy = {...출석2}; copy[i] = e.target.value; 출석2변경(copy)}}
-                  ></input>      
-                )
-              })
-            }
-            <input type="text" className="출석2 출석2-12" value={출석2합계}/>
+           {/* 출석1 */}
+            {presentInput(0)}
+            <input type="text" className="출석1 출석1-12" defaultValue={출석합계['num1']} />
 
-            {/* 출석현황 출석3 */}
-            {
-              출석.map((a, i)=>{
-                return (
-                  <input type="text" className={"출석3 출석3-" + a}
-                  defaultValue={출석3[i]}
-                  onInput={(e)=>{let copy = {...출석3}; copy[i] = e.target.value; 출석3변경(copy)}}
-                  ></input>      
-                )
-              })
-            }
-            <input type="text" className="출석3 출석3-12" value={출석3합계}/>
+            {/* 출석2 */}
+            {presentInput(1)}
+            <input type="text" className="출석2 출석2-12" defaultValue={출석합계['num2']} />
+
+            {/* 출석3 */}
+            {presentInput(2)}
+            <input type="text" className="출석3 출석3-12" defaultValue={출석합계['num3']} />
 
             <input type="text" className="출석총원-재적" defaultValue={재적} />
-            <input type="text" className="출석총원-계" value={총계}/>
-          
+            <input type="text" className="출석총원-계" defaultValue={총계}/>
+            <input type="text" className="출석총원-새친구" defaultValue={새친구} 
+              onChange={(e) => {let copy = e.target.value; 새친구변경(copy); }}/>
           </div>
         </div>  
           
         {/* 결석 박스*/}
         <div className='결석자박스'>
         {
-          결석자명단.map((a, i)=>{
+          absent.map((a, i)=>{
             return (
-              <div className='결석자박스리스트'>
+              <div key={i} className='결석자박스리스트'>
                 <input type="text" className="소그룹"
-                defaultValue={결석자명단[i].dag_ko}
+                defaultValue={`${absent[i].da_ko}`+`${absent[i].dag_ko}`}
                 onInput={(e)=>{let copy = {...소그룹}; copy[i+1] = e.target.value; 소그룹변경(copy)}}
                 ></input>
                 <input type="text" className="결석자"
-                defaultValue={결석자명단[i].n}
+                defaultValue={absent[i].n}
                 onInput={(e)=>{let copy = {...결석자}; copy[i+1] = e.target.value; 결석자변경(copy)}}
                 ></input>
                 <input type="text" className="사유"
@@ -387,16 +260,16 @@ function Report(props) {
           
         <div className='report_footer'>
           <button className="button2 savebutton" onClick={()=>{
-            if (date_day === '' || date_day === '') {
+            if (date_month === '' || date_day === '') {
               alert('날짜를 선택하세요')
             } else {
-              navigate('/lastreport/result')
+              navigate(`/lastreport/result`)
             }
           }}>저장하기</button>
 
           <button className="button2 homebutton2" onClick={()=>{
-              navigate('/main')
-          }}>home</button>
+              navigate(`/main`)
+          }}>home</button> 
         </div>
         
       </div>
@@ -404,42 +277,18 @@ function Report(props) {
 
         <Route path="/result" element={
           <Result 
-            년={년} 월={date_month} 일={date_day} 째주={째주}
-            부서={부서} 
+            부서={부서} 년={year} 월={date_month} 일={date_day} date_num={date_num}
             예배기도자={예배기도자} 설교본문={설교본문} 설교자={설교자} 설교제목={설교제목}
             헌금={헌금} 헌금합계={헌금합계}
-            반={반} 학년={학년}
-            출석1합계={출석1합계} 출석2합계={출석2합계} 출석3합계={출석3합계}
-            출석1={출석1} 출석2={출석2} 출석3={출석3} 
-            재적={재적} 총계={총계}
-            소그룹={소그룹} 결석자={결석자} 사유={사유}
-            결석자명단={결석자명단}
+            학년={dep_year} 반={group_name} 재적={재적} 총계={총계}
+            출석={출석} 출석합계={출석합계} 새친구={새친구}
+            결석자명단={absent} 결석자={결석자} 사유={사유}
           ></Result>
         }/>
 
-        
-        <Route path="/modify" element={
-          <Modify
-            부서변경={부서변경} 년변경={년변경} 월변경={월변경} 일변경={일변경} 째주변경={째주변경}
-            예배기도자변경={예배기도자변경} 설교본문변경={설교본문변경} 
-            설교자변경={설교자변경} 설교제목변경={설교제목변경}
-            헌금={헌금}
-            헌금변경={헌금변경} 헌금합계변경={헌금합계변경}
-            반={반} 학년={학년}
-            반변경={반변경} 학년변경={학년변경} 재적변경={재적변경} 총계변경={총계변경}
-            
-            출석1합계={출석1합계} 출석2합계={출석2합계} 출석3합계={출석3합계}
-            출석1변경={출석1변경} 출석2변경={출석2변경} 출석3변경={출석3변경} 
-            출석1={출석1} 출석2={출석2} 출석3={출석3}
-            소그룹={소그룹} 소그룹변경={소그룹변경}
-            결석자={결석자} 결석자변경={결석자변경} 사유={사유} 사유변경={사유변경}
-            결석자명단={결석자명단} 결석자명단변경={set결석자명단}
-        ></Modify>}/> 
+        <Route path="/lastresult" element={<LastResult></LastResult>}/>  
 
-
-        <Route path="/lastresult" element={<LastResult></LastResult>}/> 
-
-      </Routes>
+       </Routes>
     </div>
   );
 }

@@ -37,30 +37,8 @@ let 빈박스50개 = createSlice({
   ]
 }) 
 
-let images = createSlice({
-  name : 'images',
-  initialState : [
-    {n:1, img:"/img/1.jpg"},
-    {n:2, img:"/img/2.jpg"},
-    {n:3, img:"/img/3.jpg"},
-    {n:4, img:"/img/4.jpg"},
-    {n:5, img:"/img/5.jpg"},
-    {n:6, img:"/img/6.jpg"},
-    {n:7, img:"/img/7.jpg"},
-    {n:8, img:"/img/8.jpg"},
-    {n:9, img:"/img/9.jpg"},
-    {n:10, img:"/img/10.jpg"},
-    {n:11, img:"/img/11.jpg"},
-    {n:12, img:"/img/12.jpg"}
-  ]
-}) 
-
-
-
-
 export default configureStore({
   reducer: {
-    images : images.reducer,
     부서info : 부서info.reducer,
     빈박스11개 : 빈박스11개.reducer,
     빈박스50개 : 빈박스50개.reducer

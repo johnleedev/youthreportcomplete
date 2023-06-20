@@ -1,10 +1,11 @@
-import { React, useMemo, useState } from 'react';
+/*eslint-disable*/
+import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'
+import MainURL from '../MainURL';
 
-
-function Login(props) {
+function Login() {
 
   let navigate = useNavigate();
 
@@ -34,7 +35,7 @@ function Login(props) {
 
         <button className='login_button' 
             onClick={()=>{
-              axios.post('/login', {
+              axios.post(`${MainURL}/login`, {
               username : 이름, password : 비번
             }).then((결과)=>{
               alert(결과.data)
@@ -45,7 +46,7 @@ function Login(props) {
 
           <button className='home_button' 
             onClick={()=>{
-              navigate('/')
+              navigate('/main')
           }}>뒤로가기</button>
        
 

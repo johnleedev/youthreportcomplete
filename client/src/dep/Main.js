@@ -1,25 +1,25 @@
-import './App.css';
-import { React, useMemo, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+/*eslint-disable*/
+import './css/main.css';
+import { React } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux"
-import axios from 'axios'
-import Basicinfo from './depdatabasic/Basicinfo';
 
-function Main(props) {
+function Main() {
 
     let state = useSelector((state) => { return state } )
     let navigate = useNavigate();
   
-    let [info, setinfo] = useState(Basicinfo)
-
     return (
         <div>
-            <div className='App_main'>
+          <div className='App_main'>
             <div className='maintitle'>주일학교 출석 관리</div>
             <div className='dep_box'>
               { state.부서info.map((a, i)=>{
                   return (
-                    <div className='dep_list' onClick={()=>{navigate(`/dep/${i+1}`)}}><p>{ state.부서info[i].dep}</p></div>           
+                    <div key={i} className='dep_list' onClick={()=>{
+                      navigate(`/dep/?dep=${i+1}`)
+                      console.log('depNumber', i+1)
+                    }}><p>{ state.부서info[i].dep}</p></div>           
                   )
                 })}
             </div>
@@ -36,6 +36,7 @@ function Main(props) {
               navigate('/lastreport/LastResult')
               }}> 전체통계 </button>  
             </div>
+
           </div>
 
         </div>

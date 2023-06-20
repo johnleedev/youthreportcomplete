@@ -297,6 +297,12 @@ span {
   height: 50px;
   left: 1446px;
 }
+.result출석총원-새친구 {
+  top: 1365px;
+  width: 80px;
+  height: 50px;
+  left: 530px;
+}
 
 .result결석자박스 {
   position: relative;
@@ -326,12 +332,12 @@ span {
   margin: 1px;
 }
 .result소그룹 {
-  width: 130px;
+  width: 160px;
   height: 50px;
 }
 .result결석자 {
-  margin-left: 130px;
-  width: 160px;
+  margin-left: 160px;
+  width: 130px;
   height: 50px;
 }
 .result사유 {

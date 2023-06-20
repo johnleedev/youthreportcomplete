@@ -33,7 +33,7 @@
   width: 100px;
   height: 31px;
   border: 0.1px solid rgb(187, 187, 187);
-  background-color: #fcfbe6;
+  background-color: #eefff6;
 }
 .dep_namebox div {
   display: flex;
@@ -58,5 +58,6 @@
   border: 0.1px solid rgb(187, 187, 187);
 } 
 .dep_nametablebox .color_1 {
-  background-color: rgb(198, 252, 213);
+  background-color: rgb(213, 213, 213);
+  padding: 10px;
 } 

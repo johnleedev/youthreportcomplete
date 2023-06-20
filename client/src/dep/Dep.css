@@ -1,5 +1,5 @@
 .dep_main {
-  
+  width: 100vw;
 }
 .dep_main button {
   color: black;
@@ -16,16 +16,6 @@
 }
 
 /* 출석현황 */
-.dep_main_presentCondition {
-
-}
-
-.dep_main_title {
-  position: relative;
-  height: 100px;
-  display: flex;
-  margin-bottom: 80px;
-}
 
 /* 1) 타이틀 */
 .dep_main_text {
@@ -35,16 +25,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(210, 255, 208);
+  background-color: rgb(245, 245, 245);
   margin-top: 30px;
   font-size: 2rem;
+  box-shadow: 2px 2px 5px 1px grey;
 }
 /*  2) 버튼 */
+.dep_main_buttonbox {
+  max-width: 1800px;
+  position: relative;
+  height: 80px;
+  display: flex;
+}
+
 .dep_main_buttonleft {
   position: absolute;
   display: flex;
   left: 20px;
-  top: 100px;
+  top: 20px;
 }
 .dep_agebutton {
   width: 80px;
@@ -54,7 +52,7 @@
   position: absolute;
   display: flex;
   right: 0;
-  top: 100px;
+  top: 20px;
 }
 .buttoncolor {
   background-color: grey;
@@ -74,18 +72,13 @@
 /* 3) 출석현황 */
 .dep_main_presentlist {
   margin-top: 30px;
-  overflow-x: scroll;
 }
 /* 날짜 */
 .dep_main_present_date {
-  width: 1800px;
+  width: 100%;
+  overflow-x: scroll;
 }
 /* 현황 */
-.dep_main_deptable {
-  margin-top: 1rem;
-  display: none;
-}
-
 .dep_main_presentlist::-webkit-scrollbar {
   height: 20px;  /* 가로축 스크롤바 길이 */
 }
@@ -93,15 +86,7 @@
   width: 50%;
   height: 50%;
   border-radius: 8px;
-  background-color: rgb(188, 254, 183);
 }
-
-.dep_main_statsbox {
-  margin-top: 1rem;
-  display: none;
-}
-
-
 
 /* 출석기입 */
 .dep_main_presentInput {
@@ -128,7 +113,7 @@
   background-color: rgb(188, 254, 183);
 }
 .dep_main_dateselect_box { 
-  width: 100px;
+  width: 120px;
   height: 100%;
   font-size: 18px;
 }
@@ -142,15 +127,16 @@
 }
 
 /* 안내메시지 */
-.dep_main_noitce_text1 {
+.dep_main_noitce_textbox {
   position: absolute;
+  line-height: 18px;
+  width: 550px;
   top: 90px;
   left: 50px;
+  font-size: 14px;
 }
-.dep_main_noitce_text2 {
-  position: absolute;
-  top: 120px;
-  left: 50px;
+.dep_main_noitce_textbox strong {
+  color: red;
 }
 /* 3) 현황버튼 */
 .dep_main_inputstate {
@@ -183,9 +169,6 @@
   display: flex;
   margin-top: 80px;
 }
-.dep_main_input_wrapper{
-  display: none;
-}
 .dep_main_dateinput_box {
   margin: 10px;
   display: flex;
@@ -214,7 +197,7 @@
 }
 .dateinput_name_name {
   position: absolute;
-  top: 10px;
+  top: 15px;
   left: 0;
   right: 0;
   margin: auto;
@@ -262,15 +245,12 @@ input[type="checkbox"]:checked::after {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 .dateinput_state_box {
   width: 600px;
   height: 100%;
-}
-.dateinput_stats_wrapper {
-  display: none;
-  width: 100%;
-  height: 100%;
+
 }
 .dateinput_state_contentbox {
   display: flex;
@@ -285,17 +265,17 @@ input[type="checkbox"]:checked::after {
   justify-content: center;
   background-color: rgb(205, 253, 201);
 }
-.showflex {
-  display: block;
-}
+
 
 
 /* 버튼 */
 .dateinput_content_button_box {
+  max-width: 1800px;
   position: relative;
   display: flex;
   justify-content: right;
-  margin: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 .dateinput_content_button {
   width: 120px;
@@ -314,7 +294,6 @@ input[type="checkbox"]:checked::after {
 }
 
 
-.dep_main_noitce_text3,
 .dep_main_noitce_text4 {
   display: flex;
   justify-content: right;
@@ -367,7 +346,7 @@ input[type="checkbox"]:checked::after {
     display: none;
   }
   .dep_main_inputstate_text1 {
-    margin-right: 50px;
+    margin-right: 20px;
   }
   .dep_main_dateselect_text2 {
     display: none;
@@ -380,7 +359,6 @@ input[type="checkbox"]:checked::after {
 @media screen and (max-width : 600px) { 
   .dep_main {
     width: 100%;
-    max-width: 100%;
     overflow-x: hidden;
   }
   /* 출석현황 */
@@ -393,8 +371,15 @@ input[type="checkbox"]:checked::after {
     position: absolute;
     left: 20px;
   }
+  .dep_main_buttonbox{
+    height: 200px;
+  }
+  .dep_main_buttonleft {
+    top: 110px;
+    left: 20px;
+  }
   .dep_main_buttonright {
-    top: 160px;
+    top: 170px;
     left: 20px;
   }
 
@@ -409,10 +394,16 @@ input[type="checkbox"]:checked::after {
     top : 120px;
     left: 20px;
   }
-  .dep_main_noitce_text1 {
+  .dep_main_noitce_textbox {
+    width: 370px;
     top : 180px;
     left: 20px;
+    margin-bottom: 10px;
   }
+  .dep_main_noitce_text1 {
+
+  }
+  
   /* 3) 현황버튼 */
   .dep_main_inputstate {
     top : 220px;
@@ -469,12 +460,7 @@ input[type="checkbox"]:checked::after {
     height: 60px;
     font-size: 14px;
   }
-  .dep_main_noitce_text3 {
-    top: 90px;
-    width: 90%;
-    line-height: 25px;
-    text-align: center;
-  }
+ 
   .dep_main_noitce_text4 {
     top: 150px;
     width: 90%;

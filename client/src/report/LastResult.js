@@ -1,32 +1,31 @@
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+/*eslint-disable*/
+import { React, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import './LastResult.css';
-import { useMemo, useState } from 'react';
-import $ from "jquery";
-import BasicResult from '../depdatabasic/BasicResult'
-
+import MainURL from '../MainURL';
+import sundaylist from "../dep/sundaylist";
 
 function LastResult () {
   
   let navigate = useNavigate();
 
   useMemo(()=>{ return (
-    axios.get('/lastresult').then((결과)=>{
+    axios.get(`${MainURL}/lastresult`).then((결과)=>{
       console.log(결과.data)
       let copy = [...결과.data]
       setresult_data(copy)
     })
   ) }, [])
 
-  let [result_data, setresult_data] = useState(BasicResult)
+  let [result_data, setresult_data] = useState([])
+
   let result = result_data.filter( e=> 
     e.영유아2부 !== null || e.영유아3부 !== null ||
     e.유치2부 !== null || e.유치2부 !== null ||
     e.유년2부 !== null || e.유년3부 !== null ||
     e.초등2부 !== null || e.초등3부 !== null ||
     e.고등부 !== null || e.중등부 !== null )
-
-  let [result_sum, setresult_sum] = useState('')
 
   var result_sum_ft = (i) => {
     let sum = 
@@ -77,10 +76,10 @@ function LastResult () {
           {
             result.map((a, i)=>{
               return (
-                <div className='tablebox'>
+                <div className='tablebox' key={i}>
                   <div className='box'>
-                    <div className='date'>{result[i].month}월</div>
-                    <div className='date'>{result[i].day}일</div>
+                    <div className='date'>{sundaylist[i].month}월</div>
+                    <div className='date'>{sundaylist[i].day}일</div>
                   </div>
                   <div className='boxline'></div>
                   <div className='box'>{result[i].영유아2부}</div>
@@ -110,25 +109,13 @@ function LastResult () {
           } 
         </div>  
 
-          <button class="button5 homeButton" onClick={()=>{
-            
-            // axios.post('/resultsuminput', {
-              
-            //  }).then((결과)=>{
-            //  })
-            // .catch(()=>{console.log('실패함')})
+          <button className="button5 homeButton" onClick={()=>{
+            navigate('/main')
+          }}>처음으로</button>
 
-                navigate('/main')
-                }}>처음으로</button>
-
-
-                
-
-        
       </div>
     </div>
   )
-
 }
 
 export default LastResult;

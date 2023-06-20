@@ -122,7 +122,6 @@
 .inputs {
   position: absolute;
   width: 1600px;
-  
   top: -6px;
   left: -8px;
 }
@@ -136,15 +135,12 @@
   position: absolute;
 }
 
-
-
 .부서 {
   top: 412px;
   left: 285px;
   width: 780px;
   height: 50px;
 }
-
 
 .날짜 {
   top: 528px;
@@ -207,7 +203,7 @@
 }
 
 .출석-반 {
-  font-size: 18px;
+  font-size: 16px;
   width: 80px;
   height: 50px;
   position: absolute;
@@ -253,14 +249,14 @@
   font-size: 20px;
   top: 1145px;
   left: 280px;
-  width: 105px;
+  width: 140px;
   height: 50px;
 }
 .학년_세-2 {
   font-size: 20px;
   top: 1215px;
   left: 280px;
-  width: 105px;
+  width: 140px;
   height: 50px;
   background-color: #eaf5ef;
   border: 1px solid #a1b2a8;
@@ -269,7 +265,7 @@
   font-size: 20px;
   top: 1287px;
   left: 280px;
-  width: 105px;
+  width: 140px;
   height: 50px;
 }
 
@@ -421,8 +417,7 @@
   width: 80px;
   height: 50px;
   z-index: 1;
-  background-color: #fcfbe6;
-  border: 1px solid #cecca9;
+  
   top: 1360px;
   left: 1295px;
 }
@@ -433,6 +428,14 @@
   left: 1446px;
   background-color: #e6e7e9;
   border: 1px solid #b7b8b9;
+}
+.출석총원-새친구 {
+  top: 1360px;
+  width: 80px;
+  height: 50px;
+  left: 550px;
+  background-color: #fcfbe6;
+  border: 1px solid #cecca9;
 }
 
 
@@ -462,14 +465,15 @@
   justify-content: left;
   padding-left: 20px;
   margin: 1px;
+  font-size: 15px;
 }
 .소그룹 {
-  width: 130px;
+  width: 160px;
   height: 50px;
 }
 .결석자 {
-  margin-left: 130px;
-  width: 160px;
+  margin-left: 160px;
+  width: 130px;
   height: 50px;
 }
 .사유 {
