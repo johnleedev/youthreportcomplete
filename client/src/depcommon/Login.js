@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'
 import MainURL from '../MainURL';
+import { useCookies } from 'react-cookie';
 
 function Login() {
+  
+  const [cookies, setCookie, removeCookie] = useCookies(['login']);
 
   let navigate = useNavigate();
 
@@ -37,9 +40,15 @@ function Login() {
             onClick={()=>{
               axios.post(`${MainURL}/login`, {
               username : 이름, password : 비번
-            }).then((결과)=>{
-              alert(결과.data)
-              if (결과.data === "로그인 성공!") {navigate('/nameadd')} 
+            }).then((res)=>{
+              if (res.data[0].username === '출석') {
+                alert('출석 로그인 되었습니다.')
+                setCookie('login', 'gsjkldjklajsdfk', { path: '/' });
+                navigate('/main');
+              } else if (res.data) {
+                alert('관리자 로그인 되었습니다.')
+                navigate('/nameadd')
+              } 
             })
             .catch((error)=>{console.log(error)})
           }}>로그인</button>

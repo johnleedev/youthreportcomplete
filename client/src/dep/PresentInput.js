@@ -7,7 +7,7 @@ import $ from 'jquery';
 
 
 function PresentInput(props) {
-  
+ 
   const [date, setDate] = useState('선택');
   const transfer_data = props.transfer_data
 

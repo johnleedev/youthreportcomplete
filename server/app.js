@@ -142,7 +142,7 @@ app.post('/login', function(req, res) {
       , [username, password], function(error, result, fields) {
         if (error) throw error;
         if (result.length > 0) {
-          res.send("로그인 성공!");
+          res.send(result);
           res.end();
         } else {              
           res.send("로그인 정보가 일치하지 않습니다.");

@@ -8,8 +8,11 @@ import sundaylist from "../dep/sundaylist";
 import Result from './Result';
 import LastResult from './LastResult';
 import MainURL from '../MainURL';
+import { useCookies } from 'react-cookie';
 
 function Report() {
+
+  const [cookies, setCookie, removeCookie] = useCookies(['login']);
   
   let state = useSelector((state) => { return state } )
   let navigate = useNavigate();
@@ -263,7 +266,13 @@ function Report() {
             if (date_month === '' || date_day === '') {
               alert('날짜를 선택하세요')
             } else {
-              navigate(`/lastreport/result`)
+              if (!cookies.login) {
+                alert('로그인이 필요합니다.')
+                navigate('/login');
+              } else if (cookies.login === 'gsjkldjklajsdfk') {
+                navigate(`/lastreport/result`)
+
+              }
             }
           }}>저장하기</button>
 

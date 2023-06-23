@@ -5,9 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import $ from 'jquery';
 import axios from 'axios';
 import MainURL from '../MainURL';
+import { useCookies } from 'react-cookie';
 
 function PresentInputButtons(props) {
 
+  const [cookies, setCookie, removeCookie] = useCookies(['login']);
+  
   let navigate = useNavigate();
 
   const day = props.addDate;
@@ -16,7 +19,11 @@ function PresentInputButtons(props) {
   const person = props.addPerson;
 
   const handleInput = () => {
-    axios
+    if (!cookies.login) {
+      alert('로그인이 필요합니다.')
+      navigate('/login');
+    } else if (cookies.login === 'gsjkldjklajsdfk') {
+      axios
       .post(`${MainURL}/dateinput`, {
         day: day,
         dep: dep,
@@ -35,6 +42,7 @@ function PresentInputButtons(props) {
       .catch(() => {
         console.log('실패함');
       });
+    }
   };
 
   const handleReset = () => {
