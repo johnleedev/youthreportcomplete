@@ -10,9 +10,11 @@
 .dep_main_inner {
   position: relative;
   width: 100%;  
+  max-width: 1800px;
   left: 0;
   right: 0;
   margin: auto;
+  
 }
 
 /* 출석현황 */
