@@ -1,11 +1,12 @@
 /*eslint-disable*/
 import React, { useState } from 'react';
-
+import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import classnames from 'classnames';
 
 function Deptitle(props) {
-  
+
+  const [cookies] = useCookies(['login']);
   const navigate = useNavigate();
   const dep_year = props.dep_year  
 
@@ -27,6 +28,15 @@ function Deptitle(props) {
         ))}
       </div>
       <div className='dep_main_buttonright'>
+        <button className='dep_homebutton' onClick={() => {
+          if (!cookies.login) {
+            navigate('/login')  
+          } else if (cookies.login === 'gsjkldjklajsdfk') {
+            alert('로그인이 되어있습니다.')
+          };
+        }}>
+          로그인
+        </button>
         <button className='dep_homebutton' onClick={() => navigate('/main')}>
           Home
         </button>

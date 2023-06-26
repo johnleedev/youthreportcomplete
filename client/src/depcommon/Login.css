@@ -48,3 +48,22 @@
   margin: 5px;
   font-size: 1.3rem;
 }
+
+
+@media screen and (max-width : 600px) {
+  .login_main_wrapper {
+    width: 350px;
+    height: 600px;
+    margin-top: 20px;
+  }
+  .login_input_wrapper {
+    height: 350px;
+    flex-direction: column;
+  }
+  .login_content {
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-bottom: 3px;
+  }
+}

@@ -9,9 +9,11 @@ import PresentInput from './PresentInput';
 import Loading from '../Loading';
 import MainURL from '../MainURL';
 import { useSelector } from 'react-redux';
+import { useCookies } from 'react-cookie';
 
 function Dep(props) {
-
+  
+  const [cookies] = useCookies(['login']);
   const state = useSelector((state) => state);
 
   const [refresh, setRefresh] = useState(true);
@@ -56,13 +58,23 @@ function Dep(props) {
     return
   };
 
+  const alarm = () => {
+    if (!cookies.login) {
+      alert('로그인을 하셔야 입력이 됩니다') 
+    } else if (cookies.login === 'gsjkldjklajsdfk') {
+      return
+    };
+  } 
+
   useMemo(()=>{
-    fetchData()
+    fetchData();
+    alarm();
   }, [refresh]);
 
+
   useEffect(()=>{
-    select_data(0)
-    set_year_num(1)
+    select_data(0);
+    set_year_num(1);
     setTimeout(() => {
       setIsLoading(false);  
     }, 500);

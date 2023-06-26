@@ -12,17 +12,26 @@ import { useCookies } from 'react-cookie';
 
 function Report() {
 
-  const [cookies, setCookie, removeCookie] = useCookies(['login']);
+  const [cookies] = useCookies(['login']);
   
   let state = useSelector((state) => { return state } )
   let navigate = useNavigate();
 
-  useMemo(()=>{ return (
+  const alarm = () => {
+    if (!cookies.login) {
+      alert('로그인을 하셔야 입력이 됩니다') 
+    } else if (cookies.login === 'gsjkldjklajsdfk') {
+      return
+    };
+   };
+
+  useMemo(()=>{ 
+    alarm();
     axios.get(`${MainURL}/info`).then((res)=>{ 
       let copy = [...res.data]
       setinfo(copy)
-    })
-  ) }, [])
+    });
+  }, [])
 
   const date = new Date();
   const year = date.getFullYear();
@@ -89,7 +98,8 @@ function Report() {
       let yeardata = 부서data.filter(e => e.da_ko === `${dep_year[y]}`); // 학년별 데이터
       
       for (let a = 0; a < group_name.length; a++) {
-        let groupnum = yeardata.filter(e => e.da_ko === `${dep_year[y]}` && e.dag_ko === `${group_name[a]}`).length
+        let copy = yeardata.filter(e => e.da_ko === `${dep_year[y]}` && e.dag_ko === `${group_name[a]}`)
+        let groupnum = copy.filter(e => eval("e.day"+(`${date_num}`)) === '1').length
         present[y][a] = { year : dep_year[y], group : group_name[a], num : groupnum }
       }
       sum[`num${y+1}`] = present[y].reduce((acc, cur) => parseInt(acc || 0) + parseInt(cur.num || 0), 0);
